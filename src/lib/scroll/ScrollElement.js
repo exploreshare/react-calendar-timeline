@@ -137,7 +137,7 @@ class ScrollElement extends Component {
         this.lastTouchDistance = touchDistance
       }
     } else if (this.lastSingleTouch && e.touches.length === 1) {
-      e.preventDefault()
+     // e.preventDefault()
       let x = e.touches[0].clientX
       let y = e.touches[0].clientY
       let deltaX = x - this.lastSingleTouch.x
@@ -150,11 +150,21 @@ class ScrollElement extends Component {
         this.props.onScroll(this.scrollComponent.scrollLeft - deltaX)
       }
       if (moveY) {
-        window.scrollTo(
-          window.pageXOffset,
-          this.singleTouchStart.screenY - deltaY0
-        )
+        // window.scrollTo(
+        //   window.pageXOffset,
+        //   this.singleTouchStart.screenY - deltaY0
+        // )
+
+
+
+        window.scrollTo({
+          top: this.singleTouchStart.screenY - (deltaY0*5),
+          left: window.pageXOffset,
+          behavior: 'smooth'
+        });
       }
+
+      
     }
   }
 
